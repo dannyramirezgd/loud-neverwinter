@@ -15,11 +15,12 @@ const resolvers = {
     createCharacter: async (
       parent,
       { name, job, level, race, alignment, background },
-      context
+      context,
     ) => {
       const updatedPlayer = await Player.findOneAndUpdate(
         //currently need to hard code id. Will use context once I set up JWT
-        { _id: "642ccdc5be7ee749404b0814" },
+        //I think in order to update characters I will need to make them a model
+        { _id: '642ccdc5be7ee749404b0814' },
         {
           $push: {
             characters: {
@@ -31,8 +32,8 @@ const resolvers = {
               background,
             },
           },
-        },           
-        { new: true, runValidators: true},
+        },
+        { new: true, runValidators: true },
       );
       return updatedPlayer;
     },

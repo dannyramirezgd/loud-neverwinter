@@ -37,7 +37,6 @@ const typeDefs = gql `
     }
 
     type Stat {
-        _id: ID
         name: String
         value: Int
     }

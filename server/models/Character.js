@@ -6,6 +6,8 @@ const proficiencySchema = require('./Proficiencies');
 const savingThrowSchema = require('./SavingThrows');
 const personalitySchema = require('./Personality');
 
+//make this a model
+
 const characterSchema = new Schema(
     {
         name: {
