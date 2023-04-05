@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const characterSchema = require('./Character')
 const bcrypt = require('bcrypt');
 
 const playerSchema = new Schema(
@@ -7,7 +8,19 @@ const playerSchema = new Schema(
             type: String,
             required: true,
             trim: true
-        }
+        },
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+            match: [/.+@.+\..+/, 'Must match an email address'],
+        },
+        password: {
+            type: String,
+            required: true,
+            minlength: 6,
+        },
+        characters: [characterSchema]
     },
     {
         toJSON: {
