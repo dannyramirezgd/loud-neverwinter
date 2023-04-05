@@ -1,4 +1,10 @@
 const { Schema } = require('mongoose');
+const spellSchema = require('./Spell');
+const statSchema = require('./Stat');
+const battleSchema = require('./Battle');
+const proficiencySchema = require('./Proficiencies');
+const savingThrowSchema = require('./SavingThrows');
+const personalitySchema = require('./Personality');
 
 const characterSchema = new Schema(
     {
@@ -7,73 +13,30 @@ const characterSchema = new Schema(
             required: true,
             maxLength: 50,
         },
-        class: {
+        job: {
             type: String,
             required: true,
-            maxLength: 50,
+        },
+        level: {
+            type: Number,
+            required: true,
         },
         race: {
             type: String,
             required: true,
-            maxLength: 50
         },
-        health: {
-            type: Number, 
-            required: true,
-        },
-        ac: {
-            type: Number, 
-            required: true,
-        },
-        initiative: {
-            type: Number, 
-            required: true,
-        },
-        speed: {
-            type: Number, 
-            required: true,
-        },
-        hitDice: {
-            type: Number, 
-            required: true,
-        },
-        str: {
-            type: Number, 
-            required: true,
-        },
-        dex: {
-            type: Number, 
-            required: true,
-        },
-        con: {
-            type: Number, 
-            required: true,
-        },
-        int: {
-            type: Number, 
-            required: true,
-        },
-        wis: {
-            type: Number, 
-            required: true,
-        },
-        cha: {
-            type: Number, 
-            required: true,
-        },
-        personality: {
+        alignment: {
             type: String,
         },
-        ideals: {
+        background: {
             type: String,
         },
-        bonds: {
-            type: String,
-        },
-        flaws: {
-            type: String,
-        },
-        
+        spells: [spellSchema],
+        stats: [statSchema],
+        battles: [battleSchema],
+        proficiences: [proficiencySchema],
+        savingThrows: [savingThrowSchema],
+        personality: [personalitySchema]
     }
 )
 
