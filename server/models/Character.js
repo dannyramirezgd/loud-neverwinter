@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 const spellSchema = require('./Spell');
 const statSchema = require('./Stat');
 const battleSchema = require('./Battle');
@@ -39,7 +39,14 @@ const characterSchema = new Schema(
         proficiences: [proficiencySchema],
         savingThrows: [savingThrowSchema],
         personality: [personalitySchema]
+    },
+    {
+        toJSON: {
+            virtuals: true,
+            getters: true
+        }
     }
 )
+
 
 module.exports = characterSchema

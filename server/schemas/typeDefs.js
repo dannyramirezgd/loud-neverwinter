@@ -75,11 +75,12 @@ const typeDefs = gql `
 
     type Query {
         players: [Player]
+        characters: [Character]
     }
 
     type Mutation {
         createPlayer(playerName: String!, email: String!): Player
-        createCharacter(name: String!, job: String!, level: Int!, race: String!, alignment: String!, background: String!): Player
+        createCharacter(name: String!, job: String!, level: Int!, race: String!, alignment: String!, background: String!): Character
     }
 `
 
