@@ -2,11 +2,27 @@ const { Schema } = require('mongoose');
 
 const statSchema = new Schema(
     {
-        name: {
-            type: String,
+        str: {
+            type: Number,
             required: true,
         },
-        value: {
+        dex: {
+            type: Number,
+            required: true,
+        },
+        con: {
+            type: Number,
+            required: true,
+        },
+        int: {
+            type: Number,
+            required: true,
+        },
+        wis: {
+            type: Number,
+            required: true,
+        },
+        cha: {
             type: Number,
             required: true,
         }

@@ -37,8 +37,12 @@ const typeDefs = gql `
     }
 
     type Stat {
-        name: String
-        value: Int
+        str: Int,
+        dex: Int,
+        con: Int,
+        int: Int,
+        wis: Int,
+        cha: Int
     }
 
     type Battle {
@@ -81,6 +85,7 @@ const typeDefs = gql `
     type Mutation {
         createPlayer(playerName: String!, email: String!): Player
         createCharacter(name: String!, job: String!, level: Int!, race: String!, alignment: String!, background: String!): Character
+        createStats(str: Int!, dex: Int!, con: Int!, int: Int!, wis: Int!, cha: Int!): Player
     }
 `
 

@@ -20,7 +20,13 @@ const playerSchema = new Schema(
     //     required: true,
     //     minlength: 6,
     // },
-    characters: [characterSchema],
+    // characters: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Character',
+    //   },
+    // ],
+    characters: [characterSchema]
   },
   {
     toJSON: {
@@ -29,8 +35,8 @@ const playerSchema = new Schema(
   },
 );
 
-playerSchema.virtual('characterList').get(function () {
-  return this.characters.length;
+playerSchema.virtual('charactersList').get(function () {
+  return this.characters;
 });
 
 const Player = model('Player', playerSchema);

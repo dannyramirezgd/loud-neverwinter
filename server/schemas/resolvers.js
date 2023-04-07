@@ -4,17 +4,18 @@ const { Player, Character } = require('../models');
 const resolvers = {
   Query: {
     players: async () => {
-      const playerData = await Player.find({})
-        .select('-__v')
-        .populate('characters');
+      return await Player.find();
+      // const playerData = await Player.find({})
+      //   .select('-__v')
+      //   .populate('characters');
 
-      return playerData;
+      // return playerData;
     },
     characters: async () => {
       //need to find a way to find a specific item in the array of characters
       //maybe a .map or .filter function by id? but how would I grab id? Maybe by name? but I would have to click it
       //BUT if it's a button on the front I can pull the ID because I can map the array and display and when clicked just grab the ID
-      return await Player.find({});
+      return await Character.find({});
     },
   },
   Mutation: {
@@ -25,12 +26,31 @@ const resolvers = {
     },
     createCharacter: async (parent, args, context) => {
       const character = args;
+      // character.stats.push(newStats)
       const updatedPlayer = await Player.findByIdAndUpdate(
-        { _id: '642f4dd08bca731e634b1c4b' },
-        { $push: { characters:  character  } },
+        { _id: '642f63da4337994f61b76313' },
+        { $push: { characters: character } },
         { new: true },
       );
-      console.log(character);
+      return updatedPlayer;
+    },
+    createStats: async (parent,  args , context) => {
+
+      //need to use context once I have this up and running
+      //replace "newName" with 
+
+      console.log(args)
+
+      const updatedPlayer = await Player.findByIdAndUpdate(
+        { _id: playerId },
+        { $set: { 'characters.$[elem].stats': args} },
+        {
+          arrayFilters: [{ 'elem.name': { $eq: "newName" } }],
+          new: true,
+          runValidators: true,
+        },
+      );
+
       return updatedPlayer;
     },
   },
