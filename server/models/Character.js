@@ -36,7 +36,7 @@ const characterSchema = new Schema(
         spells: [spellSchema],
         stats: [statSchema],
         battles: [battleSchema],
-        proficiences: [proficiencySchema],
+        proficiencies: [proficiencySchema],
         savingThrows: [savingThrowSchema],
         personality: [personalitySchema]
     },

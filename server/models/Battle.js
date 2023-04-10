@@ -12,7 +12,6 @@ const battleSchema = new Schema(
         },
         tempHealth: {
             type: Number,
-            required: true,
         },
         initiative: {
             type: Number,

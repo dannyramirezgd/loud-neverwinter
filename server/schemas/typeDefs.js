@@ -86,6 +86,9 @@ const typeDefs = gql `
         createPlayer(playerName: String!, email: String!): Player
         createCharacter(name: String!, job: String!, level: Int!, race: String!, alignment: String!, background: String!): Character
         createStats(str: Int!, dex: Int!, con: Int!, int: Int!, wis: Int!, cha: Int!): Player
+        createSavingThrows(name: String!, value: Int!, isProficient: Boolean): Player
+        createProficiencies(name: String!, value: Int!, isProficient: Boolean): Player
+        createBattle(ac: Int!, health: Int!, tempHealth: Int, initiative: Int!, speed: Int!, hitDice: String!): Player
     }
 `
 

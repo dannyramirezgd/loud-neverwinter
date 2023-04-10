@@ -45,7 +45,7 @@ const resolvers = {
         { _id: playerId },
         { $set: { 'characters.$[elem].stats': args} },
         {
-          arrayFilters: [{ 'elem.name': { $eq: "newName" } }],
+          arrayFilters: [{ 'elem.name': { $eq: "newName" } }], // this is where I would put character id for context
           new: true,
           runValidators: true,
         },
@@ -53,6 +53,48 @@ const resolvers = {
 
       return updatedPlayer;
     },
+    createSavingThrows: async(parent, args, context) => {
+
+      const updatedPlayer = await Player.findByIdAndUpdate(
+        {_id: "642f63da4337994f61b76313"},
+        {$push: {'characters.$[elem].savingThrows': args}},
+        {
+          arrayFilters: [{ 'elem.name': {$eq:"newName"}}], //this is where I would put character id for context
+          new: true,
+          runValidators: true
+        }
+        )
+
+        return updatedPlayer
+    }, createBattle: async(parent, args, context) => {
+
+      const updatedPlayer = await Player.findByIdAndUpdate(
+        {_id: "642f63da4337994f61b76313"},
+        {$push: {'characters.$[elem].battles': args}},
+        {
+          arrayFilters: [{ 'elem.name': {$eq:"newName"}}], //this is where I would put character id for context
+          new: true,
+          runValidators: true
+        }
+        )
+
+        return updatedPlayer
+    }, createProficiencies: async(parent, args, context) => {
+
+      const updatedPlayer = await Player.findByIdAndUpdate(
+        {_id: "642f63da4337994f61b76313"},
+        {$push: {'characters.$[elem].proficiencies': args}},
+        {
+          arrayFilters: [{ 'elem.name': {$eq:"newName"}}], //this is where I would put character id for context
+          new: true,
+          runValidators: true
+        }
+        )
+
+        return updatedPlayer
+    },
+    
+    
   },
 };
 
