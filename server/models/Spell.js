@@ -1,9 +1,13 @@
-const { Schema } = require('mongoose')
+const { Schema, model } = require('mongoose')
 
 const spellSchema = new Schema (
     {
         name: {
             type: String,
+            required: true,
+        },
+        level: {
+            type: Number,
             required: true,
         },
         type: {
@@ -22,15 +26,26 @@ const spellSchema = new Schema (
             type: String,
             required: true,
         },
+        material: {
+            type: String,
+            required: true,
+        },
         duration: {
             type: String,
             required: true,
         },
-        description: {
+        desc: {
             type: String,
             required: true,
+        },
+        higher_level: {
+            type: String,
+            required: true
         }
     }
 )
 
-module.exports = spellSchema
+const Spell = model('Spell', spellSchema);
+
+
+module.exports = Spell;

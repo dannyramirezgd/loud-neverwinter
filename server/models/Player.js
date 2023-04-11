@@ -15,11 +15,11 @@ const playerSchema = new Schema(
       unique: true,
       match: [/.+@.+\..+/, 'Must match an email address'],
     },
-    // password: {
-    //     type: String,
-    //     required: true,
-    //     minlength: 6,
-    // },
+    password: {
+        type: String,
+        required: true,
+        minlength: 6,
+    },
     // characters: [
     //   {
     //     type: Schema.Types.ObjectId,
@@ -34,6 +34,17 @@ const playerSchema = new Schema(
     },
   },
 );
+
+playerSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds)
+  }
+})
+
+playerSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password)
+}
 
 playerSchema.virtual('charactersList').get(function () {
   return this.characters;

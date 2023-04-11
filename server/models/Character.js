@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const spellSchema = require('./Spell');
+//const spellSchema = require('./Spell');
 const statSchema = require('./Stat');
 const battleSchema = require('./Battle');
 const proficiencySchema = require('./Proficiencies');
@@ -33,7 +33,12 @@ const characterSchema = new Schema(
         background: {
             type: String,
         },
-        spells: [spellSchema],
+        spells: [
+            {
+                type: Schema.Types.ObjectId, 
+                ref:  'Spell'
+            }
+        ],
         stats: [statSchema],
         battles: [battleSchema],
         proficiencies: [proficiencySchema],

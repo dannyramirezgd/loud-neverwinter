@@ -5,6 +5,7 @@ const typeDefs = gql `
         _id: ID
         playerName: String
         email: String
+        password: String
         characters: [Character]
     }
 
@@ -27,6 +28,7 @@ const typeDefs = gql `
     type Spell {
         _id: ID
         name: String
+        level: Int
         type: String
         castingTime: String
         range: String
@@ -77,18 +79,27 @@ const typeDefs = gql `
         flaws: String
     }
 
+    type Auth {
+        token: ID!
+        player: Player
+    }
+
     type Query {
+        me: Player
         players: [Player]
         characters: [Character]
     }
 
     type Mutation {
-        createPlayer(playerName: String!, email: String!): Player
+        login(email: String!, password: String!): Auth
+        createPlayer(playerName: String!, email: String!, password: String!): Auth
         createCharacter(name: String!, job: String!, level: Int!, race: String!, alignment: String!, background: String!): Character
         createStats(str: Int!, dex: Int!, con: Int!, int: Int!, wis: Int!, cha: Int!): Player
         createSavingThrows(name: String!, value: Int!, isProficient: Boolean): Player
         createProficiencies(name: String!, value: Int!, isProficient: Boolean): Player
         createBattle(ac: Int!, health: Int!, tempHealth: Int, initiative: Int!, speed: Int!, hitDice: String!): Player
+        createPersonality(traits: String!, ideals: String!, bonds: String!, flaws: String!): Player
+        createSpells(name: String!, type: String!, castingTime: String!, range: String!, components: String!, duration: String!, description: String!): Player
     }
 `
 
